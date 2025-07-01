@@ -666,7 +666,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -3553492663772186052, guid: a41b933f1a7813e4d964a68e354736be, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1792,6 +1792,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f162d511e2541ec4b94142c6c650e605, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  btnInserir: {fileID: 505723592}
+  btnCancelar: {fileID: 2041410830}
+  btnComprar: {fileID: 1032443674}
+  btnManutencao: {fileID: 952781359}
+  compartimentoVisual: {fileID: 0}
+  prefabLatinha: {fileID: 653972374}
   avisoText: {fileID: 590189377}
   latinhaImage: {fileID: 653972374}
   compartimento: {fileID: 2008126048}

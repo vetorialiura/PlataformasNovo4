@@ -6,4 +6,6 @@ public interface IMachineState
     void Cancelar();
     void Comprar();
     void Manutencao();
+    
+    void Entrar();
 }

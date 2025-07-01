@@ -3,23 +3,24 @@ using UnityEngine;
 public class ManutencaoState : IMachineState
 {
     private SodaMachine maquina;
-
     public ManutencaoState(SodaMachine m) => maquina = m;
-
-    public void InserirMoeda()
-    {
-        maquina.estoque++;
-        maquina.AtualizarVisualEstoque();      // se estiver usando imagens de latinhas
-        maquina.AtualizarAvisoManutencao();    // atualiza o visor com "Estoque: X"
-    }
 
     public void Entrar()
     {
         maquina.compartimento.SetActive(true);
         maquina.AtualizarVisualEstoque();
-        maquina.AtualizarAvisoManutencao();    // mostra estoque logo que entra na manutenção
+        maquina.AtualizarAvisoManutencao();
         maquina.AtualizarInteracoes(true, false, false, true);
+        maquina.animator.SetTrigger("Manutencao");
     }
+
+    public void InserirMoeda()
+    {
+        maquina.estoque++;
+        maquina.AtualizarVisualEstoque();
+        maquina.AtualizarAvisoManutencao();
+    }
+
     public void Cancelar() { }
     public void Comprar() { }
 
