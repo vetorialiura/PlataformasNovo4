@@ -2,23 +2,24 @@ using UnityEngine;
 
 public class ManutencaoState : IMachineState
 {
+    
     private SodaMachine maquina;
     public ManutencaoState(SodaMachine m) => maquina = m;
 
     public void Entrar()
     {
-        maquina.compartimento.SetActive(true);
-        maquina.AtualizarVisualEstoque();
-        maquina.AtualizarAvisoManutencao();
-        maquina.AtualizarInteracoes(true, false, false, true);
+        maquina.AtivarBotoes(true, false, false, true);
         maquina.animator.SetTrigger("Manutencao");
+        maquina.MostrarCompartimento(true);
+        maquina.MostrarLatinhasEstoque();
+        maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0);
     }
 
     public void InserirMoeda()
     {
-        maquina.estoque++;
-        maquina.AtualizarVisualEstoque();
-        maquina.AtualizarAvisoManutencao();
+        maquina.AdicionarEstoque();
+        maquina.MostrarLatinhasEstoque();
+        maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0);
     }
 
     public void Cancelar() { }
@@ -26,7 +27,13 @@ public class ManutencaoState : IMachineState
 
     public void Manutencao()
     {
-        maquina.compartimento.SetActive(false);
-        maquina.AtualizarEstado();
+        maquina.MostrarCompartimento(false);
+        foreach (Transform child in maquina.latinhasContainer)
+            GameObject.Destroy(child.gameObject);
+        maquina.AtualizarEstadoBaseadoNoEstoque();
+
+       
+        
     }
+    
 }

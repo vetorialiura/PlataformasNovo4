@@ -4,6 +4,8 @@ using TMPro;
 
 public class SodaMachine : MonoBehaviour
 {
+   
+    
     // Botões da interface
     public Button btnInserir;
     public Button btnCancelar;
@@ -12,11 +14,11 @@ public class SodaMachine : MonoBehaviour
 
     // Visual da máquina
     public GameObject compartimento;     // Compartimento das latinhas (porta)
-    public GameObject latinhaImage;      // Latinha que aparece na venda
+    public GameObject latinhaImage;      // Latinha individual que aparece na venda
     public TextMeshProUGUI avisoText;    // Texto do visor
     public Animator animator;            // Animator da máquina
 
-    [HideInInspector] public int estoque = 0; // Estoque de latinhas
+    public int estoque = 0;
 
     private IMachineState estadoAtual;
     [HideInInspector] public SemMoedaState estadoSemMoeda;
@@ -25,16 +27,20 @@ public class SodaMachine : MonoBehaviour
     [HideInInspector] public SemRefrigeranteState estadoVazio;
     [HideInInspector] public ManutencaoState estadoManutencao;
 
+    public GameObject latinhaPrefab; // Prefab para múltiplas latinhas
+    public Transform latinhasContainer; // Container das latinhas
+
     void Start()
     {
-        // Inicializa os estados
         estadoSemMoeda = new SemMoedaState(this);
         estadoComMoeda = new ComMoedaState(this);
         estadoVenda = new VendaState(this);
         estadoVazio = new SemRefrigeranteState(this);
         estadoManutencao = new ManutencaoState(this);
 
-        // Começa no estado correto conforme estoque
+        MostrarLatinha(false);
+        MostrarCompartimento(false);
+
         if (estoque > 0)
             SetEstado(estadoSemMoeda);
         else
@@ -43,20 +49,17 @@ public class SodaMachine : MonoBehaviour
         ConectarBotoes();
     }
 
-    // Troca o estado e chama o método Entrar que dispara trigger no animator
     public void SetEstado(IMachineState novoEstado)
     {
         estadoAtual = novoEstado;
         estadoAtual.Entrar();
     }
 
-    // Métodos chamados pelos botões (OnClick)
     public void InserirMoeda() => estadoAtual.InserirMoeda();
     public void Cancelar() => estadoAtual.Cancelar();
     public void Comprar() => estadoAtual.Comprar();
     public void Manutencao() => estadoAtual.Manutencao();
 
-    // Esse método será chamado por Animation Events em cada animação para ativar/desativar botões
     public void AtivarBotoes(bool inserir, bool cancelar, bool comprar, bool manutencao)
     {
         btnInserir.interactable = inserir;
@@ -65,56 +68,56 @@ public class SodaMachine : MonoBehaviour
         btnManutencao.interactable = manutencao;
     }
 
-    // Esse método será chamado por Animation Events para atualizar o texto do visor
     public void AtualizarAviso(string texto, float r, float g, float b)
     {
         avisoText.text = texto;
         avisoText.color = new Color(r, g, b);
     }
 
-    // Controla o compartimento (porta) visível ou não (pode ser chamado por Animation Events)
-    public void MostrarCompartimento(bool ativo)
-    {
-        compartimento.SetActive(ativo);
-    }
+    public void MostrarCompartimento(bool ativo) => compartimento.SetActive(ativo);
+    public void MostrarLatinha(bool ativo) { if (latinhaImage != null) latinhaImage.SetActive(ativo); }
 
-    // Controla a latinha visível ou não (ex: aparece na venda)
-    public void MostrarLatinha(bool ativo)
-    {
-        latinhaImage.SetActive(ativo);
-    }
-
-    // Incrementa estoque, usado pelo estado manutenção (por exemplo)
     public void AdicionarEstoque()
     {
         estoque++;
     }
 
-    // Decrementa estoque, usado na venda
     public void RemoverEstoque()
     {
         if (estoque > 0) estoque--;
     }
 
-    // Atualiza o estado após ações que mudam estoque ou condições
-    // Aqui você deve chamar a mudança de estado conforme a lógica do seu jogo
-    // Exemplo: no seu código, você pode usar o Animator para disparar transições e dentro dos estados usar SetEstado conforme necessário.
-    // Para manter simples, o controle de estados deve ficar nos estados, não aqui, para evitar if-else.
-    // Então deixe essa função para você chamar SetEstado quando quiser trocar estado.
     public void AtualizarEstadoBaseadoNoEstoque()
     {
+        MostrarLatinha(false);
         if (estoque <= 0)
             SetEstado(estadoVazio);
         else
             SetEstado(estadoSemMoeda);
     }
 
-    // Liga os botões aos métodos da máquina
     void ConectarBotoes()
     {
         btnInserir.onClick.AddListener(InserirMoeda);
         btnCancelar.onClick.AddListener(Cancelar);
         btnComprar.onClick.AddListener(Comprar);
         btnManutencao.onClick.AddListener(Manutencao);
+    }
+
+    // MOSTRAR VÁRIAS LATINHAS NO MODO MANUTENÇÃO
+    public void MostrarLatinhasEstoque()
+    {
+        if (latinhasContainer == null || latinhaPrefab == null) return;
+
+        // Limpa latinhas antigas
+        foreach (Transform child in latinhasContainer)
+            Destroy(child.gameObject);
+
+        // Instancia uma latinha para cada refrigerante no estoque
+        for (int i = 0; i < estoque; i++)
+        {
+            GameObject novaLatinha = Instantiate(latinhaPrefab, latinhasContainer);
+            novaLatinha.transform.localPosition = new Vector3(i * 0.5f, 0, 0); // ajuste o espaçamento se desejar
+        }
     }
 }

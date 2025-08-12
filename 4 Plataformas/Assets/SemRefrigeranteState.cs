@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class SemRefrigeranteState : IMachineState
 {
     private SodaMachine maquina;
@@ -7,17 +5,17 @@ public class SemRefrigeranteState : IMachineState
 
     public void Entrar()
     {
-        maquina.AtualizarInteracoes(false, false, false, true);
-        maquina.animator.SetTrigger("SemRefrigerante");
+        maquina.AtivarBotoes(false, false, false, true); // Só MANUTENÇÃO ativo
+        maquina.AtualizarAviso("VAZIO", 1, 0, 0); // Vermelho
+        maquina.MostrarLatinha(false);
+        maquina.MostrarCompartimento(false);
     }
 
     public void InserirMoeda() { }
     public void Cancelar() { }
     public void Comprar() { }
-
     public void Manutencao()
     {
-        maquina.compartimento.SetActive(true);
-        maquina.AtualizarEstado();
+        maquina.SetEstado(maquina.estadoManutencao);
     }
 }

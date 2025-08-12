@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class ComMoedaState : IMachineState
 {
     private SodaMachine maquina;
@@ -7,11 +5,13 @@ public class ComMoedaState : IMachineState
 
     public void Entrar()
     {
-        maquina.AtualizarInteracoes(false, true, true, false);
-        maquina.animator.SetTrigger("ComMoeda");
+        maquina.AtivarBotoes(false, true, true, false); // CANCELAR e COMPRAR ativados
+        maquina.AtualizarAviso("OK", 0, 1, 0); // Verde
+        maquina.MostrarLatinha(false);
+        maquina.MostrarCompartimento(false);
     }
 
-    public void InserirMoeda() { } // Não pode inserir mais
+    public void InserirMoeda() { }
     public void Cancelar()
     {
         maquina.SetEstado(maquina.estadoSemMoeda);
@@ -20,10 +20,10 @@ public class ComMoedaState : IMachineState
     public void Comprar()
     {
         maquina.SetEstado(maquina.estadoVenda);
-        maquina.estoque--;
-        maquina.latinhaImage.SetActive(true);
-        maquina.Invoke(nameof(maquina.AtualizarEstado), 1f);
     }
 
-    public void Manutencao() { }
+    public void Manutencao()
+    {
+        maquina.SetEstado(maquina.estadoManutencao);
+    }
 }
