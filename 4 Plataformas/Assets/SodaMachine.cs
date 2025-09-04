@@ -4,21 +4,21 @@ using TMPro;
 
 public class SodaMachine : MonoBehaviour
 {
-   
-    
-    // Botões da interface
     public Button btnInserir;
     public Button btnCancelar;
     public Button btnComprar;
     public Button btnManutencao;
 
-    // Visual da máquina
-    public GameObject compartimento;     // Compartimento das latinhas (porta)
-    public GameObject latinhaImage;      // Latinha individual que aparece na venda
-    public TextMeshProUGUI avisoText;    // Texto do visor
-    public Animator animator;            // Animator da máquina
+    public GameObject compartimento; // Painel dentro do Canvas
+    public GameObject latinhaImage;  // Para animação de venda (opcional)
+    public TextMeshProUGUI avisoText;
+    public Animator animator;
+
+    public GameObject latinhaPrefab; // Prefab de UMA latinha
+    public Transform latinhasContainer; // Container vazio dentro do compartimento
 
     public int estoque = 0;
+    public int estoqueMaximo = 10; // Limite máximo de latinhas
 
     private IMachineState estadoAtual;
     [HideInInspector] public SemMoedaState estadoSemMoeda;
@@ -26,9 +26,6 @@ public class SodaMachine : MonoBehaviour
     [HideInInspector] public VendaState estadoVenda;
     [HideInInspector] public SemRefrigeranteState estadoVazio;
     [HideInInspector] public ManutencaoState estadoManutencao;
-
-    public GameObject latinhaPrefab; // Prefab para múltiplas latinhas
-    public Transform latinhasContainer; // Container das latinhas
 
     void Start()
     {
@@ -58,7 +55,7 @@ public class SodaMachine : MonoBehaviour
     public void InserirMoeda() => estadoAtual.InserirMoeda();
     public void Cancelar() => estadoAtual.Cancelar();
     public void Comprar() => estadoAtual.Comprar();
-    public void Manutencao() => estadoAtual.Manutencao();
+    public void OnManutencaoClick() => estadoAtual.Manutencao();
 
     public void AtivarBotoes(bool inserir, bool cancelar, bool comprar, bool manutencao)
     {
@@ -75,16 +72,22 @@ public class SodaMachine : MonoBehaviour
     }
 
     public void MostrarCompartimento(bool ativo) => compartimento.SetActive(ativo);
-    public void MostrarLatinha(bool ativo) { if (latinhaImage != null) latinhaImage.SetActive(ativo); }
+    public void MostrarLatinha(bool ativo)
+    {
+        if (latinhaImage != null)
+            latinhaImage.SetActive(ativo);
+    }
 
     public void AdicionarEstoque()
     {
-        estoque++;
+        if (estoque < estoqueMaximo)
+            estoque++;
     }
 
     public void RemoverEstoque()
     {
-        if (estoque > 0) estoque--;
+        if (estoque > 0)
+            estoque--;
     }
 
     public void AtualizarEstadoBaseadoNoEstoque()
@@ -101,23 +104,20 @@ public class SodaMachine : MonoBehaviour
         btnInserir.onClick.AddListener(InserirMoeda);
         btnCancelar.onClick.AddListener(Cancelar);
         btnComprar.onClick.AddListener(Comprar);
-        btnManutencao.onClick.AddListener(Manutencao);
+        btnManutencao.onClick.AddListener(OnManutencaoClick);
     }
 
-    // MOSTRAR VÁRIAS LATINHAS NO MODO MANUTENÇÃO
     public void MostrarLatinhasEstoque()
     {
         if (latinhasContainer == null || latinhaPrefab == null) return;
 
-        // Limpa latinhas antigas
         foreach (Transform child in latinhasContainer)
-            Destroy(child.gameObject);
+            UnityEngine.Object.Destroy(child.gameObject);
 
-        // Instancia uma latinha para cada refrigerante no estoque
         for (int i = 0; i < estoque; i++)
         {
             GameObject novaLatinha = Instantiate(latinhaPrefab, latinhasContainer);
-            novaLatinha.transform.localPosition = new Vector3(i * 0.5f, 0, 0); // ajuste o espaçamento se desejar
+            novaLatinha.transform.localPosition = new Vector3(i * 50, 0, 0); // Ajuste 50 para espaçamento
         }
     }
 }

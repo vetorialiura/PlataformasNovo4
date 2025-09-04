@@ -5,10 +5,11 @@ public class ComMoedaState : IMachineState
 
     public void Entrar()
     {
-        maquina.AtivarBotoes(false, true, true, false); // CANCELAR e COMPRAR ativados
-        maquina.AtualizarAviso("OK", 0, 1, 0); // Verde
+        maquina.AtivarBotoes(false, true, true, false);
+        maquina.AtualizarAviso("OK", 0, 1, 0);
         maquina.MostrarLatinha(false);
         maquina.MostrarCompartimento(false);
+        maquina.animator.SetTrigger("ComMoeda");
     }
 
     public void InserirMoeda() { }
@@ -16,12 +17,10 @@ public class ComMoedaState : IMachineState
     {
         maquina.SetEstado(maquina.estadoSemMoeda);
     }
-
     public void Comprar()
     {
         maquina.SetEstado(maquina.estadoVenda);
     }
-
     public void Manutencao()
     {
         maquina.SetEstado(maquina.estadoManutencao);

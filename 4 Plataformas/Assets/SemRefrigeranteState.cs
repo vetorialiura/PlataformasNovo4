@@ -5,10 +5,11 @@ public class SemRefrigeranteState : IMachineState
 
     public void Entrar()
     {
-        maquina.AtivarBotoes(false, false, false, true); // Só MANUTENÇÃO ativo
-        maquina.AtualizarAviso("VAZIO", 1, 0, 0); // Vermelho
+        maquina.AtivarBotoes(false, false, false, true);
+        maquina.AtualizarAviso("VAZIO", 1, 0, 0);
         maquina.MostrarLatinha(false);
         maquina.MostrarCompartimento(false);
+        maquina.animator.SetTrigger("SemRefrigerante");
     }
 
     public void InserirMoeda() { }

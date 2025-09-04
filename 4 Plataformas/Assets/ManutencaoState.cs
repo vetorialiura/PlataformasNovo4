@@ -1,8 +1,7 @@
-using UnityEngine;
+using UnityEngine; // <-- Necessário para Transform e Object!
 
 public class ManutencaoState : IMachineState
 {
-    
     private SodaMachine maquina;
     public ManutencaoState(SodaMachine m) => maquina = m;
 
@@ -10,7 +9,7 @@ public class ManutencaoState : IMachineState
     {
         maquina.AtivarBotoes(true, false, false, true);
         maquina.animator.SetTrigger("Manutencao");
-        maquina.MostrarCompartimento(true);
+        maquina.compartimento.SetActive(true);
         maquina.MostrarLatinhasEstoque();
         maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0);
     }
@@ -27,13 +26,9 @@ public class ManutencaoState : IMachineState
 
     public void Manutencao()
     {
-        maquina.MostrarCompartimento(false);
+        maquina.compartimento.SetActive(false);
         foreach (Transform child in maquina.latinhasContainer)
-            GameObject.Destroy(child.gameObject);
+            UnityEngine.Object.Destroy(child.gameObject);
         maquina.AtualizarEstadoBaseadoNoEstoque();
-
-       
-        
     }
-    
 }
