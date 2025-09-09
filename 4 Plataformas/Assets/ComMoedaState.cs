@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class ComMoedaState : IMachineState
 {
     private SodaMachine maquina;
@@ -6,10 +8,10 @@ public class ComMoedaState : IMachineState
     public void Entrar()
     {
         maquina.AtivarBotoes(false, true, true, false);
-        maquina.AtualizarAviso("OK", 0, 1, 0);
         maquina.MostrarLatinha(false);
-        maquina.MostrarCompartimento(false);
+        maquina.MostrarCompartimento(true);
         maquina.animator.SetTrigger("ComMoeda");
+        maquina.AtualizarVisualEstoque();
     }
 
     public void InserirMoeda() { }

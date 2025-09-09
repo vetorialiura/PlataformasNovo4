@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SemRefrigeranteState : IMachineState
 {
     private SodaMachine maquina;
@@ -6,10 +8,11 @@ public class SemRefrigeranteState : IMachineState
     public void Entrar()
     {
         maquina.AtivarBotoes(false, false, false, true);
-        maquina.AtualizarAviso("VAZIO", 1, 0, 0);
         maquina.MostrarLatinha(false);
-        maquina.MostrarCompartimento(false);
+        maquina.MostrarCompartimento(true);
         maquina.animator.SetTrigger("SemRefrigerante");
+        maquina.AtualizarAviso("VAZIO", 1, 0, 0);
+        maquina.MostrarLatinhasEstoque();
     }
 
     public void InserirMoeda() { }

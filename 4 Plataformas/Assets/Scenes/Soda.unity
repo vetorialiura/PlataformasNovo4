@@ -119,6 +119,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &12280142 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2879706204232740905, guid: 446e84462de35ec46a7f08c6010f89be, type: 3}
+  m_PrefabInstance: {fileID: 9176876127459152230}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &402849517
 GameObject:
   m_ObjectHideFlags: 0
@@ -315,7 +320,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.525, y: -154.942}
+  m_AnchoredPosition: {x: 307.525, y: 4.057977}
   m_SizeDelta: {x: 93.23, y: 30.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &505723592
@@ -362,7 +367,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109230931}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SodaMachine, Assembly-CSharp
         m_MethodName: InserirMoeda
         m_Mode: 1
@@ -583,7 +588,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -19, y: -64}
+  m_AnchoredPosition: {x: 266, y: 95}
   m_SizeDelta: {x: 115.7867, y: 32.6315}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &590189377
@@ -799,16 +804,16 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 653972374}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0.7204013, w: 0.6935575}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.3528225, y: 0.5227, z: 0.5227}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1425386217}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -92.175}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -103, y: 154}
+  m_AnchoredPosition: {x: -49, y: -114}
   m_SizeDelta: {x: 88.893, y: 100}
   m_Pivot: {x: 0.49999952, y: 0.49999982}
 --- !u!114 &653972376
@@ -1026,6 +1031,81 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 830955652}
   m_CullTransparentMesh: 1
+--- !u!1 &845882034
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 845882035}
+  - component: {fileID: 845882037}
+  - component: {fileID: 845882036}
+  m_Layer: 5
+  m_Name: Compartimento
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &845882035
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845882034}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425386217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: -49.193, y: -113.258}
+  m_SizeDelta: {x: -670.398, y: -377.528}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &845882036
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845882034}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.05660379, g: 0.044749033, b: 0.044749033, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &845882037
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 845882034}
+  m_CullTransparentMesh: 1
 --- !u!1 &952781357
 GameObject:
   m_ObjectHideFlags: 0
@@ -1062,7 +1142,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82.025, y: -154.942}
+  m_AnchoredPosition: {x: 202.975, y: 4.057977}
   m_SizeDelta: {x: 93.23, y: 30.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &952781359
@@ -1109,7 +1189,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109230931}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SodaMachine, Assembly-CSharp
         m_MethodName: Manutencao
         m_Mode: 1
@@ -1159,6 +1239,41 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 952781357}
   m_CullTransparentMesh: 1
+--- !u!1 &997834799
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 997834800}
+  m_Layer: 5
+  m_Name: ' latinhasContainer'
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &997834800
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 997834799}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1425386217}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: -30, y: 86}
+  m_SizeDelta: {x: 220, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1032443672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1195,7 +1310,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -82.025, y: -113.1}
+  m_AnchoredPosition: {x: 202.975, y: 45.89998}
   m_SizeDelta: {x: 93.23, y: 30.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1032443674
@@ -1242,7 +1357,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109230931}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SodaMachine, Assembly-CSharp
         m_MethodName: Comprar
         m_Mode: 1
@@ -1306,19 +1421,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
       propertyPath: m_LocalScale.x
-      value: 3.933624
+      value: 4.1215
       objectReference: {fileID: 0}
     - target: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
       propertyPath: m_LocalScale.y
-      value: 5.167731
+      value: 5.23017
       objectReference: {fileID: 0}
     - target: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.7927
+      value: -0.8434
       objectReference: {fileID: 0}
     - target: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.5763
+      value: 1.5427
       objectReference: {fileID: 0}
     - target: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1548,12 +1663,12 @@ MonoBehaviour:
   btnCancelar: {fileID: 2041410830}
   btnComprar: {fileID: 1032443674}
   btnManutencao: {fileID: 952781359}
-  compartimento: {fileID: 2008126048}
+  compartimento: {fileID: 845882034}
   latinhaImage: {fileID: 653972374}
   avisoText: {fileID: 590189377}
   animator: {fileID: 2109230932}
-  latinhaPrefab: {fileID: 653972374}
-  latinhasContainer: {fileID: 1733071082}
+  latinhaPrefab: {fileID: 12280142}
+  latinhasContainer: {fileID: 997834800}
   estoque: 0
   estoqueMaximo: 10
 --- !u!4 &1333159000
@@ -1676,6 +1791,8 @@ RectTransform:
   - {fileID: 1032443673}
   - {fileID: 952781358}
   - {fileID: 653972375}
+  - {fileID: 997834800}
+  - {fileID: 845882035}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1762,11 +1879,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1467507960}
   m_CullTransparentMesh: 1
---- !u!4 &1733071082 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4486633002879459402, guid: 9bc90a576662e9f49a38cc3e3febd410, type: 3}
-  m_PrefabInstance: {fileID: 1178438320}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1835438437
 GameObject:
   m_ObjectHideFlags: 0
@@ -1858,7 +1970,7 @@ GameObject:
   - component: {fileID: 2008126050}
   - component: {fileID: 2008126049}
   m_Layer: 5
-  m_Name: Compartimento
+  m_Name: Compartimentoant
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1876,16 +1988,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
+  m_Material: {fileID: 10756, guid: 0000000000000000e000000000000000, type: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
-  m_Type: 0
+  m_Sprite: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -1957,7 +2069,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 22.525, y: -113.1}
+  m_AnchoredPosition: {x: 307.525, y: 45.89998}
   m_SizeDelta: {x: 93.23, y: 30.894}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2041410830
@@ -2004,7 +2116,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2109230931}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: SodaMachine, Assembly-CSharp
         m_MethodName: Cancelar
         m_Mode: 1
@@ -2290,15 +2402,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4122272978883648271, guid: 446e84462de35ec46a7f08c6010f89be, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.1799807
+      value: 0.07435003
       objectReference: {fileID: 0}
     - target: {fileID: 4122272978883648271, guid: 446e84462de35ec46a7f08c6010f89be, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.1799807
+      value: 0.07435003
       objectReference: {fileID: 0}
     - target: {fileID: 4122272978883648271, guid: 446e84462de35ec46a7f08c6010f89be, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.1799807
+      value: 0.07435003
       objectReference: {fileID: 0}
     - target: {fileID: 4122272978883648271, guid: 446e84462de35ec46a7f08c6010f89be, type: 3}
       propertyPath: m_LocalPosition.x

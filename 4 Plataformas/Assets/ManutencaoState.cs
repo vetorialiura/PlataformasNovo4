@@ -1,4 +1,4 @@
-using UnityEngine; // <-- Necessário para Transform e Object!
+using UnityEngine;
 
 public class ManutencaoState : IMachineState
 {
@@ -9,26 +9,21 @@ public class ManutencaoState : IMachineState
     {
         maquina.AtivarBotoes(true, false, false, true);
         maquina.animator.SetTrigger("Manutencao");
-        maquina.compartimento.SetActive(true);
-        maquina.MostrarLatinhasEstoque();
-        maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0);
+        maquina.MostrarCompartimento(true);
+        maquina.AtualizarVisualEstoque();
+        maquina.AtualizarAviso("Modo Manutenção", 1, 1, 0);
     }
 
     public void InserirMoeda()
     {
         maquina.AdicionarEstoque();
-        maquina.MostrarLatinhasEstoque();
-        maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0);
+        maquina.AtualizarVisualEstoque();
     }
-
     public void Cancelar() { }
     public void Comprar() { }
-
     public void Manutencao()
     {
-        maquina.compartimento.SetActive(false);
-        foreach (Transform child in maquina.latinhasContainer)
-            UnityEngine.Object.Destroy(child.gameObject);
+        maquina.AtualizarVisualEstoque();
         maquina.AtualizarEstadoBaseadoNoEstoque();
     }
 }

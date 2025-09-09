@@ -9,12 +9,14 @@ public class VendaState : IMachineState
     public void Entrar()
     {
         maquina.AtivarBotoes(false, false, false, false);
-        maquina.RemoverEstoque();
-        maquina.MostrarLatinha(true); // Latinha animada "saindo"
-        maquina.AtualizarAviso("OBRIGADO!", 0, 1, 0);
+        maquina.RemoverEstoque(); // Diminui estoque
+        maquina.MostrarLatinha(true); // Mostra latinha caindo
         maquina.animator.SetTrigger("Venda");
+        maquina.AtualizarVisualEstoque(); // Atualiza vidro e texto
+        maquina.AtualizarAviso("Obrigado!", 0, 1, 0);
         maquina.StartCoroutine(VoltarAoEstado());
     }
+
     public void InserirMoeda() { }
     public void Cancelar() { }
     public void Comprar() { }
@@ -23,9 +25,8 @@ public class VendaState : IMachineState
     private IEnumerator VoltarAoEstado()
     {
         yield return new WaitForSeconds(1.0f);
-        maquina.MostrarLatinha(false); // Esconde latinha animada
-        maquina.AtualizarAviso($"ESTOQUE: {maquina.estoque}", 1, 1, 0); // Atualiza texto do estoque
-        maquina.MostrarLatinhasEstoque(); // Atualiza container visual
+        maquina.MostrarLatinha(false); // Some latinha do compartimento
+        maquina.AtualizarVisualEstoque(); // Garante que vidro está certo
         maquina.AtualizarEstadoBaseadoNoEstoque();
     }
 }

@@ -9,23 +9,23 @@ public class SodaMachine : MonoBehaviour
     public Button btnComprar;
     public Button btnManutencao;
 
-    public GameObject compartimento; // Painel dentro do Canvas
-    public GameObject latinhaImage;  // Para animação de venda (opcional)
+    public GameObject compartimento; // Painel do compartimento (Canvas)
+    public GameObject latinhaImage;  // Latinha animada da entrega
     public TextMeshProUGUI avisoText;
     public Animator animator;
 
-    public GameObject latinhaPrefab; // Prefab de UMA latinha
-    public Transform latinhasContainer; // Container vazio dentro do compartimento
+    public GameObject latinhaPrefab; // Prefab de UMA latinha, para o vidro
+    public Transform latinhasContainer; // Container no vidro
 
-    public int estoque = 0;
-    public int estoqueMaximo = 10; // Limite máximo de latinhas
+    public int estoque = 10;
+    public int estoqueMaximo = 10;
 
     private IMachineState estadoAtual;
-    [HideInInspector] public SemMoedaState estadoSemMoeda;
-    [HideInInspector] public ComMoedaState estadoComMoeda;
-    [HideInInspector] public VendaState estadoVenda;
-    [HideInInspector] public SemRefrigeranteState estadoVazio;
-    [HideInInspector] public ManutencaoState estadoManutencao;
+    public SemMoedaState estadoSemMoeda;
+    public ComMoedaState estadoComMoeda;
+    public VendaState estadoVenda;
+    public SemRefrigeranteState estadoVazio;
+    public ManutencaoState estadoManutencao;
 
     void Start()
     {
@@ -36,7 +36,7 @@ public class SodaMachine : MonoBehaviour
         estadoManutencao = new ManutencaoState(this);
 
         MostrarLatinha(false);
-        MostrarCompartimento(false);
+        MostrarCompartimento(true);
 
         if (estoque > 0)
             SetEstado(estadoSemMoeda);
@@ -44,6 +44,7 @@ public class SodaMachine : MonoBehaviour
             SetEstado(estadoVazio);
 
         ConectarBotoes();
+        AtualizarVisualEstoque();
     }
 
     public void SetEstado(IMachineState novoEstado)
@@ -72,6 +73,7 @@ public class SodaMachine : MonoBehaviour
     }
 
     public void MostrarCompartimento(bool ativo) => compartimento.SetActive(ativo);
+
     public void MostrarLatinha(bool ativo)
     {
         if (latinhaImage != null)
@@ -92,7 +94,6 @@ public class SodaMachine : MonoBehaviour
 
     public void AtualizarEstadoBaseadoNoEstoque()
     {
-        MostrarLatinha(false);
         if (estoque <= 0)
             SetEstado(estadoVazio);
         else
@@ -107,6 +108,14 @@ public class SodaMachine : MonoBehaviour
         btnManutencao.onClick.AddListener(OnManutencaoClick);
     }
 
+    // Atualiza latinhas no vidro e texto do estoque
+    public void AtualizarVisualEstoque()
+    {
+        MostrarLatinhasEstoque();
+        AtualizarAviso($"ESTOQUE: {estoque}", 1, 1, 1);
+    }
+
+    // AJUSTADO: latinhas em grade, 4 por linha!
     public void MostrarLatinhasEstoque()
     {
         if (latinhasContainer == null || latinhaPrefab == null) return;
@@ -114,10 +123,16 @@ public class SodaMachine : MonoBehaviour
         foreach (Transform child in latinhasContainer)
             UnityEngine.Object.Destroy(child.gameObject);
 
+        int maxPorLinha = 4;        // 4 latinhas por linha
+        int espacamentoX = 50;      // pixels horizontal. Ajuste conforme prefabs
+        int espacamentoY = -60;     // pixels vertical (negativo = desce)
+
         for (int i = 0; i < estoque; i++)
         {
+            int coluna = i % maxPorLinha;
+            int linha = i / maxPorLinha;
             GameObject novaLatinha = Instantiate(latinhaPrefab, latinhasContainer);
-            novaLatinha.transform.localPosition = new Vector3(i * 50, 0, 0); // Ajuste 50 para espaçamento
+            novaLatinha.transform.localPosition = new Vector3(coluna * espacamentoX, linha * espacamentoY, 0);
         }
     }
 }

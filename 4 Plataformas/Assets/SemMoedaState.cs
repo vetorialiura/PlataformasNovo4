@@ -1,3 +1,5 @@
+using UnityEngine;
+
 public class SemMoedaState : IMachineState
 {
     private SodaMachine maquina;
@@ -6,10 +8,10 @@ public class SemMoedaState : IMachineState
     public void Entrar()
     {
         maquina.AtivarBotoes(true, false, false, true);
-        maquina.AtualizarAviso("INSIRA MOEDA", 1, 1, 1);
         maquina.MostrarLatinha(false);
-        maquina.MostrarCompartimento(false);
+        maquina.MostrarCompartimento(true); // Sempre mostra compartimento/vidro
         maquina.animator.SetTrigger("SemMoeda");
+        maquina.AtualizarVisualEstoque();
     }
 
     public void InserirMoeda()
