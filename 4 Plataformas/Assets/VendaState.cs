@@ -26,7 +26,7 @@ public class VendaState : IMachineState
     {
         yield return new WaitForSeconds(1.0f);
         maquina.MostrarLatinha(false); // Some latinha do compartimento
-        maquina.AtualizarVisualEstoque(); // Garante que vidro está certo
+        maquina.AtualizarVisualEstoque(); // Garante que vidro estï¿½ certo
         maquina.AtualizarEstadoBaseadoNoEstoque();
     }
 }

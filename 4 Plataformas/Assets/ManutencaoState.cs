@@ -11,7 +11,7 @@ public class ManutencaoState : IMachineState
         maquina.animator.SetTrigger("Manutencao");
         maquina.MostrarCompartimento(true);
         maquina.AtualizarVisualEstoque();
-        maquina.AtualizarAviso("Modo Manutenção", 1, 1, 0);
+        maquina.AtualizarAviso("Modo Manutenï¿½ï¿½o", 1, 1, 0);
     }
 
     public void InserirMoeda()
